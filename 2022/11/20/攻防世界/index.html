@@ -1,0 +1,819 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="BIBIDIDIDUDU">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="题目：robots 题目网址：https:&#x2F;&#x2F;adworld.xctf.org.cn&#x2F;challenges&#x2F;details?hash&#x3D;d7b42b9a-50ff-49d2-89b7-a0e7f960f63a_2&amp;task_category_id&#x3D;3 解题思路：    可以看到访问了robots.txt后出现了 Use-agent:* Disallow: Disallow: f1ag_1s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="攻防世界">
+<meta property="og:url" content="http://example.com/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/index.html">
+<meta property="og:site_name" content="BIBIDIDIDUDU">
+<meta property="og:description" content="题目：robots 题目网址：https:&#x2F;&#x2F;adworld.xctf.org.cn&#x2F;challenges&#x2F;details?hash&#x3D;d7b42b9a-50ff-49d2-89b7-a0e7f960f63a_2&amp;task_category_id&#x3D;3 解题思路：    可以看到访问了robots.txt后出现了 Use-agent:* Disallow: Disallow: f1ag_1s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/city.jpg">
+<meta property="article:published_time" content="2022-11-20T12:47:26.000Z">
+<meta property="article:modified_time" content="2022-11-20T13:29:22.694Z">
+<meta property="article:author" content="BIBIDIDIDUDU">
+<meta property="article:tag" content="原创">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/city.jpg">
+  
+  
+  
+  <title>攻防世界 - BIBIDIDIDUDU</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"pSxfviFBD5Wv0nLN1nhq7io6-MdYXbMMI","app_key":"FALbFdmwU4Lo2tik7mRXFEHW","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Swaxwa</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/city.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="攻防世界"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-20 20:47" pubdate>
+          2022年11月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">攻防世界</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <ol>
+<li><p>题目：<strong>robots</strong><br> 题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=d7b42b9a-50ff-49d2-89b7-a0e7f960f63a_2&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=d7b42b9a-50ff-49d2-89b7-a0e7f960f63a_2&amp;task_category_id=3</a><br> 解题思路：</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/Robots1.png" srcset="/img/loading.gif" lazyload class="">
+<p> 可以看到访问了robots.txt后出现了<br> Use-agent:*<br> Disallow:<br> Disallow: f1ag_1s_h3re.php<br> 第一行说明该协议对任何搜索引擎爬虫均有效<br> 第三行说明不希望被访问f1ag_1s_h3re.php<br> 所以我们直接访问这个f1ag_1s_h3re.php</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/Robots2.png" srcset="/img/loading.gif" lazyload class="">
+<p> 出现flag</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.51cto.com/sddai/3134736">Robots协议补充</a></p>
+</li>
+</ol>
+<span id="more"></span>
+<ol start="2">
+<li><p>题目：<strong>backup</strong><br> 题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=bced0b01-4b35-4968-9ec9-1ff751757bff_2&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=bced0b01-4b35-4968-9ec9-1ff751757bff_2&amp;task_category_id=3</a><br> 解题思路：</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/backup1.png" srcset="/img/loading.gif" lazyload class="">
+<p> 按照题目提供的方向，我们需要查看index.php的备份文件<br> php的备份文件有两种：.php~和.php.bak<br> 那么我们先访问index.php~</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/backup2.png" srcset="/img/loading.gif" lazyload class="">
+<p> 发现没有找到<br> 那么我们就访问index.php.bak<br> 然后你就会发现有一个文件被下载 用记事本打开</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/backup3.png" srcset="/img/loading.gif" lazyload class="">
+<p> 出现flag</p>
+</li>
+<li><p>题目：<strong>cookie</strong><br> 题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=24488dcc-cb19-4498-b548-d5a179273eb8_2&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=24488dcc-cb19-4498-b548-d5a179273eb8_2&amp;task_category_id=3</a><br> 解题思路：</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/cookie1.png" srcset="/img/loading.gif" lazyload class="">
+<p> 进入调试窗口（F12键），然后在网页栏刷新页面，切换到到控制台界面，查看源代码，发现有个disabled，删去，找到Cookie，发现有个look-here：“cookie.php”<br> 那么我们是不是要去访问cookie.php呢</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/cookie2.png" srcset="/img/loading.gif" lazyload class="">
+<p> 查看cookie.php的消息头<br> 发现flag</p>
+</li>
+<li><p>题目：<strong>disabled_button</strong><br> 题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=d48eee8a-4e10-4b3a-913b-e7df2749c4ef_2&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=d48eee8a-4e10-4b3a-913b-e7df2749c4ef_2&amp;task_category_id=3</a><br> 解题思路：</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/disabled_button1.png" srcset="/img/loading.gif" lazyload class="">
+<p> 进入调试窗口（F12键），然后在网页栏刷新页面，切换到到控制台界面，查看源代码，发现有个disabled，删去disabled</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/disabled_button2.png" srcset="/img/loading.gif" lazyload class="">
+<p> 按下按钮<br> 出现flag</p>
+</li>
+<li><p>题目：<strong>weak_auth</strong><br> 题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=f6b4cf7b-678c-4ebd-93ef-ba82b02de2ac_2&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=f6b4cf7b-678c-4ebd-93ef-ba82b02de2ac_2&amp;task_category_id=3</a><br> 解题思路：</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/weak_auth1.png" srcset="/img/loading.gif" lazyload class="">
+<p> 一开始我们并不知道用户名和密码，点击按钮，提示我们要用admin的用户名登录，可我们还是不知道密码<br> 选择用BP进行爆破<br> (具体操作不做展示)</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/weak_auth2.png" srcset="/img/loading.gif" lazyload class="">
+<p> 发现爆破时密码为123456的响应长度不同<br> 输入后密码正确</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/weak_auth3.png" srcset="/img/loading.gif" lazyload class="">
+<p> 出现flag</p>
+</li>
+<li><p>题目：<strong>get_post</strong><br> 题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=a1711cae-905d-4174-b274-cbc2a922e326_2&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=a1711cae-905d-4174-b274-cbc2a922e326_2&amp;task_category_id=3</a><br> 解题思路：</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/get_post1.png" srcset="/img/loading.gif" lazyload class="">
+<p> 题目需要我们用GET方式提交一个名为a,值为1的变量<br> GET提交变量时可以直接在URL后面用？连接，用&amp;来连接变量</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/get_post2.png" srcset="/img/loading.gif" lazyload class="">
+<p> 当我们提供完a&#x3D;1时，题目又要求我们以POST方式随便提交一个名为b,值为2的变量<br> POST方式将表单中的数据放在 form 的数据体中<br> 搜索得知<a target="_blank" rel="noopener" href="https://liyang0207.github.io/2019/03/30/POST%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">POST提交数据的几种方式</a></p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/get_post3.png" srcset="/img/loading.gif" lazyload class="">
+<p> 输入这段</p>
+ <form action="http://61.147.171.105:51213/?a=1" method="post">
+   <input type="text" name="b">
+   <button type="submit">提交</button>
+ </form>
+ 
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/get_post4.png" srcset="/img/loading.gif" lazyload class="">
+<p> 出现flag</p>
+<p> <a target="_blank" rel="noopener" href="https://www.runoob.com/tags/html-httpmethods.html">GET POST知识补充</a></p>
+</li>
+<li><p>题目：<strong>simple_php</strong><br> 题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=97ccaf1c-b0ba-4152-88c1-10da78135303_2&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=97ccaf1c-b0ba-4152-88c1-10da78135303_2&amp;task_category_id=3</a><br> 解题思路：</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/simple_php1.png" srcset="/img/loading.gif" lazyload class="">
+<p> 可以看到这个是php语言<br> 分析语句：<br> 首先创建了两个GET变量a和b，然后进行了三次判断，第一次判断，同时满足a&#x3D;0和a为真才能显示出flag1这个变量。接下来两个if都是与b相关的。第二个if中，is_numeric()函数判断一个变量是否为数字或者数字字符串，是返回true，否返回false。我们需要这个函数返回false以避免退出程序。第三个if中，b&gt;1234即可获得flag2。</p>
+<p> 所以通过URL传参a&#x3D;ab,b&#x3D;12345a<br> (因为变量a，b定义的是GET方式，所以可以直接在网址后赋值)</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/simple_php2.png" srcset="/img/loading.gif" lazyload class="">
+<p> 出现flag</p>
+<p> <a target="_blank" rel="noopener" href="https://www.runoob.com/php/php-tutorial.html">php补充知识</a></p>
+</li>
+<li><p>题目：<strong>baby_web</strong><br> 题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=b2d9f749-b29c-4877-950d-117258cb09a4_2&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=b2d9f749-b29c-4877-950d-117258cb09a4_2&amp;task_category_id=3</a><br> 解题思路：<br> 根据题目的描述，是让我们想想初始页面是哪个，那么我们先访问index.php,一般网站的初始页面都是index.php，在URL中输入，发现跳到了1.php</p>
+ <img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/baby_web1.png" srcset="/img/loading.gif" lazyload class="">
+<p> 通过检查发现有index.php的存在，打开<br> 出现flag</p>
+<p> 也可以使用BP抓包来寻找</p>
+</li>
+<li><p>题目：<strong>Training-WWW-Robots</strong><br> 题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=45ce489f-d95d-4c5f-9647-70fd9561d778_2&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=45ce489f-d95d-4c5f-9647-70fd9561d778_2&amp;task_category_id=3</a><br> 解题思路：<br> 同题1再URL后输入robots.txt</p>
+</li>
+<li><p>题目：<strong>unserialize3</strong><br>题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=1013364e-31aa-4643-8322-e126f12c1b82_2&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=1013364e-31aa-4643-8322-e126f12c1b82_2&amp;task_category_id=3</a><br>解题思路：</p>
+<img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/unserialize3_1.png" srcset="/img/loading.gif" lazyload class="">
+<p>先对php进行解读：<br>定义了一个名为xctf的类，定义一个公有的类属性$flag，值为111，定义一个公有的类方法__wakeup()，输出bad requests后退出当前脚本，然后要我们<br>可以看到题目要求我们运用__wakeup()函数漏洞，绕过__wakeup()来拿到flag<br>将php代码复制到PHPstorm里</p>
+<img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/unserialize3_2.png" srcset="/img/loading.gif" lazyload class="">
+<p>创建一个新的变量a，用echo输出字符串</p>
+<img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/unserialize3_3.png" srcset="/img/loading.gif" lazyload class="">
+<p>当序列化字符串表示对象属性个数的值大于真实个数的属性时就会跳过__wakeup的执行。<br>改属性变量个数，将1改为2，并在URL增添 ?code&#x3D;O:4:”xctf”:2:{s:4:”flag”;s:3:”111”;}</p>
+<img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/unserialize3_4.png" srcset="/img/loading.gif" lazyload class="">
+<p>出现flag</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xhds/p/12233720.html">序列化与反序列化</a><br><a target="_blank" rel="noopener" href="https://blog.spoock.com/2016/11/03/php-wakeup/">__wakeup()函数</a></p>
+</li>
+<li><p>题目：<strong>PHP2</strong><br>题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=cfde0863-d43b-40f2-94c9-fadcb1fea968_2&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=cfde0863-d43b-40f2-94c9-fadcb1fea968_2&amp;task_category_id=3</a><br>解题思路：</p>
+<img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/PHP2_1.png" srcset="/img/loading.gif" lazyload class="">
+<p>访问index.phps（phps文件就是php的源代码文件，通常用于提供给用户（访问者）查看php代码，因为用户无法直接通过Web浏览器看到php文件的内容，所以需要用phps文件代替。）<br>题目要求我们需要传入一个id并且这个id进行url解码后的值为admin<br>这里进行一次编码输入后发现报错，查找资料得知浏览器会自动执行一次解码，所以我们需要执行两次编码</p>
+<img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/PHP2_2.png" srcset="/img/loading.gif" lazyload class="">
+<p>在URL后输入index.php?id&#x3D;%25%36%31%25%36%34%25%36%64%25%36%39%25%36%65</p>
+<img src="/2022/11/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/PHP2_3.png" srcset="/img/loading.gif" lazyload class="">
+<p>出现flag</p>
+</li>
+<li><p>题目：<strong>file_include</strong><br>题目网址：<a target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/challenges/details?hash=ceb014e8-3a5a-11ed-abf3-fa163e4fa609&amp;task_category_id=3">https://adworld.xctf.org.cn/challenges/details?hash=ceb014e8-3a5a-11ed-abf3-fa163e4fa609&amp;task_category_id=3</a><br>解题思路：</p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CTF-web/" class="category-chain-item">CTF-web</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8E%9F%E5%88%9B/">#原创</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>攻防世界</div>
+      <div>http://example.com/2022/11/20/攻防世界/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>BIBIDIDIDUDU</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/21/PHP/" title="PHP">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PHP</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"pSxfviFBD5Wv0nLN1nhq7io6-MdYXbMMI","appKey":"FALbFdmwU4Lo2tik7mRXFEHW","path":"window.location.pathname","placeholder":"说点什么","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访客量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客人 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start -->
+  <div id="aplayer"></div>
+  <link defer rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+  <script src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js"></script>
+  <script defer src="/js/aplayer.js"></script>
+<!-- hexo injector body_end end --></body>
+</html>
