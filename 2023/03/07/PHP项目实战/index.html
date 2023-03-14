@@ -24,7 +24,7 @@
 <meta property="og:description" content="一、CMS系统架构和网站常规设置模块项目分为：客户需求 自行研发 项目的开发过程： ​		1.需求分析 ​				CMS ​					后台：会员模块 分类模块 文章模块…… ​					前台：首页 列表页 文章详情 搜索 分页 注册 登录…… ​		2.数据库设计 ​				1.找实体 ​				2.为实体找属性 ​				3.找关系 ​				4.E-R图 ​		3.程序设计 ​				项目的目">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-07T09:13:49.000Z">
-<meta property="article:modified_time" content="2023-03-07T10:09:37.223Z">
+<meta property="article:modified_time" content="2023-03-12T12:45:50.771Z">
 <meta property="article:author" content="BIBIDIDIDUDU">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -240,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          629 字
+          984 字
         
       </span>
     
@@ -251,7 +251,7 @@
         
         
         
-          6 分钟
+          9 分钟
         
       </span>
     
@@ -327,8 +327,8 @@
 <p>​								|—– user&#x2F;</p>
 <p>​								|—– type&#x2F;</p>
 <p>​							|—– control 控制器目录</p>
-<p>​							|—– IndexControl.php 显示后台主页</p>
-<p>​							|—– UserControl.php 用户相关的操作</p>
+<p>​								|—– IndexControl.php 显示后台主页</p>
+<p>​								|—– UserControl.php 用户相关的操作</p>
 <p>​							|—– ORG 扩展目录</p>
 <p>​						|—– web     网站前台目录</p>
 <p>​							|—– index.html</p>
@@ -342,7 +342,17 @@
 <p>​		4.编码阶段</p>
 <p>​		5.项目测试</p>
 <p>​		6.验收完工 项目正式上线。</p>
-<p>​		</p>
+<h1 id="二、项目目录搭建及后台模板调用"><a href="#二、项目目录搭建及后台模板调用" class="headerlink" title="二、项目目录搭建及后台模板调用"></a>二、项目目录搭建及后台模板调用</h1><p>​	1.新建文件夹EW_CMS。</p>
+<p>​	2.在EW_CMS文件夹中创建admin（后台）、config、public、home（前台）文件夹和一个index.php（主入口文件 给用户使用的）。</p>
+<p>​	3.将之前写完的ADMIN里的代码放到admin中，创建一个layout和include文件夹，将相对应的文件放入文件夹上述两个文件夹中。</p>
+<ol start="4">
+<li>修改layout中的html文件中的路径。</li>
+<li>后台也有个主入口文件，所以在admin文件夹中也创建一个index.php（在访问后台所有内容都是要通过）。</li>
+<li>在admin文件夹中创建view目录，用于放所有的模板（及页面），把index.html放入view中。</li>
+<li>在admin文件夹中创建constrol（操作后台需要调用里面的功能）。</li>
+<li>在admin文件夹中创建org。</li>
+<li></li>
+</ol>
 
                 
               </div>
